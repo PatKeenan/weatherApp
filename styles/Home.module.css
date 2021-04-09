@@ -1,0 +1,97 @@
+.container {
+  min-height: 100vh;
+  padding: 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.main {
+  padding: 5rem 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.mountains {
+  /* Make A media query to stop this from getting cut off on large screens */
+  position: absolute;
+  height: 275px;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 51;
+}
+
+.nonActiveMountain {
+  height: 10px;
+}
+.activeMountain {
+  height: 60% !important;
+  opacity: 1;
+}
+/* .moveMountains {
+  bottom: 60%;
+
+  transition: ease-in-out 1.5s;
+} */
+.moon {
+  position: absolute;
+  height: 122px;
+  width: 122px;
+  z-index: 99;
+  cursor: pointer;
+}
+.moonHolder {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 30%;
+  width: 100%;
+  z-index: 80;
+}
+.baseMountain {
+  background-color: #161415;
+  width: 100%;
+  z-index: 20;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  padding: 20px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  height: auto;
+  width: 300px;
+  z-index: 44;
+}
+#refresh {
+  z-index: 99;
+}
+
+@media (max-width: 600px) {
+  .grid {
+    width: 100%;
+    flex-direction: column;
+  }
+}

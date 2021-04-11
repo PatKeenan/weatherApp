@@ -20,7 +20,7 @@ export default function Home() {
   const [errorCode, setErrorCode] = useState("");
 
   const variants = {
-    open: { scale: 0.5, top: 30, right: 90 },
+    open: { scale: 0.5, top: 20, right: 90 },
     closed: { scale: 1, top: 90 },
   };
   const formVariant = {
@@ -130,7 +130,7 @@ export default function Home() {
               <input
                 type="text"
                 className=" bg-gray-50 text-gray-500 shadow-lg rounded-r-none rounded-lg w-9/12 h-12 px-2 outline-none"
-                placeholder="Search By City"
+                placeholder="Search By City.."
                 value={searchQ}
                 onChange={(e) => {
                   setSearchQ(e.target.value);

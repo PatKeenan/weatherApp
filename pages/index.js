@@ -108,7 +108,7 @@ export default function Home() {
 
       {/* bottom mountains png which moves when mountains is set to true */}
       <motion.img
-        animate={{ y: `${mountain ? "-175%" : 0}` }}
+        animate={{ y: `${mountain ? "-160%" : 0}` }}
         transition={{ ease: "easeInOut", duration: 1 }}
         initial={{ y: `${mountain ? "60%" : 0}` }}
         src="/Mountains.png"
@@ -122,14 +122,15 @@ export default function Home() {
           transition={{ ease: "easeInOut", duration: 1 }}
           initial={false}
         >
-          <h1 className="text-4xl text-white font-bold ">
-            Enter Your Location
-          </h1>
-          <form className=" pt-3 flex justify-evenly flex-col relative">
-            <div className="flex flex-row w-full">
+          {/* <h1 className="text-3xl text-gray-100 font-bold text-center">
+            Search By City
+          </h1> */}
+          <form className=" pt-3 flex justify-evenly flex-col relative w-full">
+            <div className="flex flex-row">
               <input
                 type="text"
-                className=" bg-gray-50 text-gray-500 shadow-lg rounded-r-none rounded-lg w-full px-2 outline-none "
+                className=" bg-gray-50 text-gray-500 shadow-lg rounded-r-none rounded-lg w-9/12 h-12 px-2 outline-none"
+                placeholder="Search By City"
                 value={searchQ}
                 onChange={(e) => {
                   setSearchQ(e.target.value);

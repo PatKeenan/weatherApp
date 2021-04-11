@@ -20,8 +20,8 @@ export default function Home() {
   const [errorCode, setErrorCode] = useState("");
 
   const variants = {
-    open: { scale: 0.5, top: 50, right: 100 },
-    closed: { scale: 1 },
+    open: { scale: 0.5, top: 30, right: 90 },
+    closed: { scale: 1, top: 90 },
   };
   const formVariant = {
     open: { opacity: 0 },
@@ -41,32 +41,37 @@ export default function Home() {
 
   const handleMountains = async (e) => {
     e.preventDefault();
-    // call the api and wait for a response
-    try {
-      const data = await fetch(
-        `${api.base}weather?q=${searchQ}&units=imperial&appid=${api.key}`
-      )
-        .then((res) => {
-          return res.json();
-        })
-        .then((result) => {
-          if (result.message == "city not found") {
-            setErrorCode("City Not Found");
-            setError(true);
-          } else {
-            setError(false);
-            setWeather({
-              temp: Math.round(result.main.temp),
-              city: result.name,
-              desc: result.weather[0].description,
-            });
-            setMountain(true);
-            console.log(result);
-          }
-        });
-    } catch (e) {
-      console.log(e);
+    if (searchQ === "") {
+      setError(true);
+      setErrorCode("Please Enter A City");
+    } else {
+      try {
+        const data = await fetch(
+          `${api.base}weather?q=${searchQ}&units=imperial&appid=${api.key}`
+        )
+          .then((res) => {
+            return res.json();
+          })
+          .then((result) => {
+            if (result.message == "city not found") {
+              setErrorCode("City Not Found");
+              setError(true);
+            } else {
+              setError(false);
+              setWeather({
+                temp: Math.round(result.main.temp),
+                city: result.name,
+                desc: result.weather[0].description,
+              });
+              setMountain(true);
+              console.log(result);
+            }
+          });
+      } catch (e) {
+        console.log(e);
+      }
     }
+    // call the api and wait for a response
   };
 
   const handleRefresh = () => {
@@ -109,7 +114,6 @@ export default function Home() {
         src="/Mountains.png"
         className={styles.mountains}
       />
-      {/* moon png which moves and scales when mountains is set to true */}
 
       <main className="searchBar">
         <motion.div
@@ -118,12 +122,14 @@ export default function Home() {
           transition={{ ease: "easeInOut", duration: 1 }}
           initial={false}
         >
-          <h1 className="text-4xl text-white font-bold">Enter Your Location</h1>
+          <h1 className="text-4xl text-white font-bold ">
+            Enter Your Location
+          </h1>
           <form className=" pt-3 flex justify-evenly flex-col relative">
             <div className="flex flex-row w-full">
               <input
                 type="text"
-                className=" bg-gray-50 text-gray-500 shadow-lg rounded-r-none rounded-lg w-full px-2 outline-none"
+                className=" bg-gray-50 text-gray-500 shadow-lg rounded-r-none rounded-lg w-full px-2 outline-none "
                 value={searchQ}
                 onChange={(e) => {
                   setSearchQ(e.target.value);
@@ -134,14 +140,14 @@ export default function Home() {
                 onClick={(e) => {
                   handleMountains(e);
                 }}
-                className="px-4 py-2 bg-green-300 rounded-l-none rounded-lg shadow-lg text-gray-100  outline-none focus:outline-none"
+                className="px-4 py-2  bg-green-400 rounded-l-none rounded-lg shadow-lg text-gray-100  outline-none focus:outline-none"
               >
                 Search
               </button>
             </div>
             {err && (
               <div className="w-full text-red-500 text-sm pt-2 pl-1 absolute  -bottom-7 left-0">
-                <p>{errorCode}: Please search again.</p>
+                <p>{errorCode}</p>
               </div>
             )}
           </form>
@@ -180,8 +186,8 @@ export default function Home() {
                   onClick={(e) => {
                     handleRefresh();
                   }}
-                  className="absolute -top-3 -right-3 hover:cursor-pointer bg-indigo-400 px-2 rounded-full focus:outline-none hover:bg-indigo-500 active:scale-95 transform transition ease-in-out duration-150 cursor-pointer"
-                  id="refresh"
+                  className="absolute shadow-lg -top-3 -right-3 hover:cursor-pointer text-white bg-indigo-400 px-2 rounded-full focus:outline-none hover:bg-indigo-500 active:scale-95 transform transition ease-in-out duration-150 cursor-pointer"
+                  id={styles.refresh}
                   title="Refresh"
                 >
                   <BsArrowCounterclockwise className="h-8" />

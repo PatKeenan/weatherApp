@@ -94,4 +94,11 @@
     width: 100%;
     flex-direction: column;
   }
+  .moon {
+    height: 100px;
+    width: 100px;
+  }
+  .container {
+    min-height: -webkit-fill-available;
+  }
 }
